@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>User Information</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <style media="screen">
+      .comm{
+        margin-left: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="/logout">Log Off</a>
+    <h1>{{user.first_name}} {{user.last_name}}</h1>
+    <p>Registered at: {{user.created_at}}</p>
+    <p>User Id: #{{user.id}}</p>
+    <p>Email Address: {{user.email}}</p>
+
+    <h2>Leave a message for {{user.first_name}}</h2>
+    <form class="" action="/post/{{user.id}}" method="post">
+      {% csrf_token %}
+      <textarea name="post" rows="6" cols="60"></textarea> <br>
+      <input type="submit" name="submit" value="Post">
+    </form>
+    {% for post in posts %}
+      <p>{{post.user_posted.first_name}}  {{post.created_at}}</p>
+      <p>{{post.content}}</p>
+      <hr>
+        {% for comment in comments %}
+          {% if comment.post.id == post.id %}
+            <p class = "comm">{{comment.user.first_name}} ---- {{comment.created_at}}</p>
+            <p class ="comm">{{comment.content}}</p>
+            <hr>
+          {% endif %}
+        {% endfor%}
+
+      <form class="comm" action="/postcomment/{{post.id}}/{{user.id}}" method="post">
+        {% csrf_token %}
+        <textarea name="comment" rows="4" cols="60" placeholder="write a message"></textarea> <br>
+        <input type="submit" name="submit" value="Comment">
+        <hr>
+      </form>
+    {% endfor %}
+  </body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Dashboard</title>
+  </head>
+  <body>
+    {% if user.user_level == admin %}
+    <h1>Manage Users</h1>
+    <form class="" action="/addnew" method="post">
+      <input type="submit" name="" value="Add New">
+    </form>
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Created_at</th>
+        <th>User Level</th>
+        <th>Actions</th>
+      </tr>
+        {% for user in users %}
+        <tr>
+        <td>{{user.id}}</td>
+        <td><a href="/user{{user.id}}"></a>{{user.first_name}}&nbsp;{{user.last_name}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.created_at}}</td>
+        <td><a href="/edit/{{user.id}}">Edit</a> / <a href="/delete/{{user.id}}">Remove</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    {% if user.user_level == admin %}
+    <h1>Manage Users</h1>
+    <form class="" action="/addnew" method="post">
+      <input type="submit" name="" value="Add New">
+    </form>
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Created_at</th>
+        <th>User Level</th>
+        <th>Actions</th>
+      </tr>
+        {% for user in users %}
+        <tr>
+        <td>{{user.id}}</td>
+        <td><a href="/user{{user.id}}"></a>{{user.first_name}}&nbsp;{{user.last_name}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.created_at}}</td>
+        <td><a href="/edit/{{user.id}}">Edit</a> / <a href="/delete/{{user.id}}">Remove</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    {% end if %}
+  </body>
+</html>

@@ -1,0 +1,25 @@
+*{
+  padding:0px;
+  margin:0px
+}
+.wrapper{
+  width:1000px;
+  margin:0 auto;
+}
+
+.casino, .house, .cave, .farm{
+  border: 2px solid red;
+  padding:5px;
+  text-align: center;
+  display:inline-block;
+  margin-right: 100px;
+  margin-bottom: 50px;
+  margin-top: 10px
+}
+.activities{
+  overflow: scroll;
+  width: 805px;
+  height: 300px;
+  border: 2px solid red;
+  padding: 10px
+}

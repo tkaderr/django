@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Projects</title>
+  </head>
+  <body>
+    <h1>{{projects.name}}</h1>
+    <h3>Project Notes: {{projects.note}}</h3>
+
+    <form class="" action="/client/{{projects.client.id}}" method="post">
+      {% csrf_token %}
+      <input type="submit" name="" value="Back">
+    </form>
+
+  </body>
+</html>

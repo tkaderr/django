@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Dashboard</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <h1>Manage Users</h1>
+    <a href="/logout">Logout</a>
+    <form class="" action="/users/new" method="post">
+      {% csrf_token %}
+      <input type="submit" name="submit" value="Add New">
+    </form>
+
+    <table class="table table-bordered">
+      <thead>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Created_at</th>
+        <th>User_Level</th>
+        {% if curr_user.user_level == 9 %}
+        <th>Actions</th>
+        {% endif %}
+      </thead>
+      <tbody>
+        {% for user in users%}
+        <tr>
+          <td>{{user.id}}</td>
+          <td><a href="users/show/{{user.id}}">{{user.first_name}} {{user.last_name}}</a></td>
+          <td>{{user.email}}</td>
+          <td>{{user.created_at}}</td>
+          {% if user.user_level == 9 %}
+          <td>admin</td>
+          {% else %}
+          <td>normal</td>
+          {% endif %}
+          {% if curr_user.user_level == 9 %}
+          <td><a href="">edit</a> / <a href="/remove/{{user.id}}">remove</a></td>
+          {% endif %}
+        </tr>
+        {%  endfor %}
+      </tbody>
+    </table>
+  </body>
+</html>

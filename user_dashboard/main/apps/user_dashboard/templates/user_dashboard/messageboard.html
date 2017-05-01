@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Message</title>
+  </head>
+  <body>
+    <h1>{{user.first_name}}&nbsp;{{user.last_name}}</h1>
+    <h3>Registered at: {{user.created_at}}</h3>
+    <h3>User ID: #{{user.id}}</h3>
+
+    <h2>Leave a Message for {{user.first_name}}</h2>
+    <form class="" action="/addmessage" method="post">
+      <textarea name="message" rows="8" cols="80"></textarea>
+      <input type="submit" value="Post Message">
+    </form>
+    {% for message in messages %}
+    {% if user.id == message.id%}
+      <p>{{message.user.first_name}}&nbsp;{{message.user.last_name}}</p>
+      <p>({{message.created|timesince}} ago)</p>
+      <p>{{message.content}}</p>
+    {% endif %}
+      {% for comment in comments %}
+      {% if comment.message.id == message.id %}
+      <p>{{comment.user.first_name}}&nbsp;{{comment.user.last_name}}</p>
+      <p>({{comment.created_at|timesince}} ago)</p>
+      <p>{{comment.content}}</p>
+      {% endif %}
+      {% endfor %}
+      <form class="" action="/addcomment" method="post">
+        <textarea name="comment" rows="8" cols="80"></textarea>
+        <input type="submit" name="" value="Post Comment">
+      </form>
+    {% endfor %}
+  </body>
+</html>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Surprise Me!</title>
+  </head>
+  <body>
+    <h1>Surprise Me!</h1>
+    <form class="" action="/process" method="POST">
+      {% csrf_token %}
+      Pick a number between 1 and 5: <input type="text" name="action" value="">
+      <input type="submit" name="" value="Ready!">
+    </form>
+  </body>
+</html>

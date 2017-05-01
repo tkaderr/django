@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Books</title>
+    <style media="screen">
+      .reviews{
+        display:inline-block;
+        width:500px;
+      }
+      .other_books{
+        display:inline-block;
+        width: 300px;
+        vertical-align: top;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Welcome, {{users.first_name}}</h1>
+    <a href="/add">Add Book and Review</a>
+    <a href="/logout">Logout</a> <br>
+    <hr>
+    <div class="reviews">
+    <h4>Recent Book Reviews:</h4>
+    {% for i in reviews %}
+    <p>Title:<a href="/bookreviews/{{i.book.id}}">{{i.book.title}}</a></p>
+    <p>Rating:{{i.rating}}</p>
+    <p><a href="/user/{{i.user.id}}">{{i.user.first_name}}</a> says: {{i.content}}</p>
+    <p>Posted:{{i.created_at}}</p>
+    {% endfor %}
+    </div>
+
+    <div class="other_books">
+      <h4>Other Books with Reviews:</h4>
+      {% for i in reviews %}
+        <p><a href="/bookreviews/{{i.book.id}}">{{i.book.title}}</a></p>
+      {% endfor %}
+    </div>
+  </body>
+</html>

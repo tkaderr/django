@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    {% block content %}
+      {% if color == "blue" %}
+          <img src="../../static/leonardo.jpg" alt="no image here">
+      {% elif color == "orange" %}
+          <img src="../../static/michelangelo.jpg" alt="no image here">
+      {% elif color == "red" %}
+          <img src="../../static/raphael.jpg" alt="no image here">
+      {% elif color == "purple" %}
+          <img src="../../static/donatello.jpg" alt="no image here">
+      {% else %}
+          <img src="../../static/notapril.jpg" alt="no image here">
+      {% endif %}
+    {% endblock content %}
+  </body>
+</html>

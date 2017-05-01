@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Reviews</title>
+    <style media="screen">
+      .reviews{
+        display:inline-block;
+        width:500px;
+      }
+      .add_reviews{
+        display: inline-block;
+        vertical-align: top;
+        width: 200px;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="/home">Home</a>
+    <a href="/logout">Logout</a>
+    <hr>
+    <h4>Title:{{books.title}}</h4>
+    <h5>Author:{{books.author}}</h5>
+    <div class="reviews">
+    <h4>Reviews:</h4>
+    <hr>
+        {% for x in reviews %}
+        <p>Rating:{{x.rating}}</p>
+        <p><a href="/user/{{x.user.id}}">{{x.user.first_name}}</a> says: {{x.content}}</p>
+        Posted: {{x.created_at}}
+        {% if request.session.id == x.user.id %}
+        <p><a href="/delete/{{x.id}}">Delete</a></p>
+        {% endif %}
+    {% endfor %}
+      </div>
+
+      <div class="add_review">
+
+        <h4>Add a Review:</h4>
+        <form class="" action="/postreview/{{books.id}}" method="post">
+          {% csrf_token %}
+          Review: <textarea name="comments" rows="8" cols="80"></textarea>
+          Rating: <select class="" name="rating">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select> star <br>
+          <input type="submit" name="" value="Submit Reviews">
+        </form>
+
+      </div>
+  </body>
+</html>

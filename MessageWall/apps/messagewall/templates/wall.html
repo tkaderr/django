@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Message Wall</title>
+  </head>
+  <body>
+    <h1>Message Wall</h1>
+    <h2>Hello, <a href="/mywall/{{user.id}}">{{user.first_name}} {{user.last_name}}</a></h2>
+    <a href="/logout">Log Off</a>
+    <form class="" action="/postmessage" method="post">
+      {% csrf_token %}
+      <textarea name="message" rows="3" cols="80"></textarea>
+      <input type="submit" name="submit" value="Post">
+    </form>
+    {%  for msg in msgs %}
+    {% if user  not in msg.faves.all%}
+    <p><a href="/mywall/{{user.id}}">{{msg.user.first_name}}</a> : {{msg.created_at}}</p>
+    <p>{{msg.content}}</p>
+    {{msg.likes.count}} likes..
+    {% if user in msg.likes.all %}
+    You liked this
+    {% else%}
+    <a href="/like/{{msg.id}}">Like</a>
+    {% endif %}
+    {% if user not in msg.faves.all %}
+    <a href="/favmsg/{{msg.id}}">Favorite Message</a>
+    {% endif %}
+    <hr>
+    {% endif %}
+    {% endfor %}
+  </body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Project</title>
+  </head>
+  <body>
+    <h1>Add Project</h1>
+    <form class="" action="/addprojectprocess/{{clients.id}}" method="post">
+      {% csrf_token %}
+      Project Name: <input type="text" name="name" value=""><br>
+      Notes: <textarea name="notes" rows="8" cols="80"></textarea><br>
+      <input type="submit" name="" value="Add Project">
+    </form>
+
+    <form class="" action="/client/{{clients.id}}" method="post">
+      {% csrf_token %}
+      <input type="submit" name="" value="Cancel">
+    </form>
+  </body>
+</html>

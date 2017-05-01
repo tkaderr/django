@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Welcome</title>
+    <style>
+      form{
+        border: 3px solid black;
+        padding: 10px;
+        margin: 10px;
+        width: 300px;
+        background-color: rgb(215, 215, 211);
+        display:inline-block;
+        vertical-align: top;
+        text-align: center;
+        margin-top: 10%
+      }
+      #red{
+        color: red;
+      }
+      body{
+        text-align: center;
+      }
+      .login{
+        height: 270px;
+      }
+    </style>
+  </head>
+  <body>
+    <form action="/login" method="post" class = "login">
+      <h2>Login</h2>
+      {% csrf_token %}
+      {% if request.session.login %}
+        {% if messages %}
+          {% for message in messages %}
+            <p{% if message.tags %} class="{{ message.tags }}"{% endif %} id = "red">{{ message }}</p>
+          {% endfor %}
+        {% endif %}
+      {% endif %}
+      <label for="email"> Email </label>
+      <span style="padding-left:55px"></span>
+      <input type="email" id="email" name="email"> <br><br>
+      <label for="password"> Password </label>
+      <span style="padding-left:30px"></span>
+      <input type="password" id="password" name="password"> <br><br>
+      <input type="submit" name="submit" value="Login"><br>
+      <p>Not a User? Please register</p>
+    </form>
+      <form action="/register" method="post">
+        <h2>My Registration Form</h2>
+        {% csrf_token %}
+        {% if not request.session.login %}
+          {% if messages %}
+            {% for message in messages %}
+              <p{% if message.tags %} class="{{ message.tags }}"{% endif %} id = "red">{{ message }}</p>
+            {% endfor %}
+          {% endif %}
+        {% endif %}
+        <label for="first_name"> First Name: </label>
+        <span style="padding-left:20px"> </span>
+        <input type="text" id="first_name" name="first_name" value=""> <br><br>
+        <label for="last_name"> Last Name: </label>
+        <span style="padding-left:20px"> </span>
+        <input type="text" id="last_name" name="last_name"> <br><br>
+        <label for="email"> Email </label>
+        <span style="padding-left:55px"></span>
+        <input type="email" id="email" name="email"> <br><br>
+        <label for="password"> Password </label>
+        <span style="padding-left:30px"></span>
+        <input type="password" id="password" name="password"> <br><br>
+        <label for="pass_confirm"> PW Confirm </label>
+        <span style="padding-left:10px"></span>
+        <input type="password" id="pass_confirm" name="confirm_password"> <br><br>
+        <input type="submit" name="submit" value="Register">
+      </form>
+  </body>
+</html>

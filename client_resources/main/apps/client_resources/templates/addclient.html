@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Add a Client</title>
+  </head>
+  <body>
+    <h1>Add Client</h1>
+    <form class="" action="/addclient" method="post">
+      {% csrf_token %}
+      Business Name: <input type="text" name="client_name" value=""><br>
+      Email: <input type="text" name="client_email" value=""><br>
+      Phone: <input type="text" name="client_phone" value=""><br>
+      Notes: <textarea name="client_notes" rows="8" cols="80"></textarea><br>
+      <input type="submit" value="Add">
+    </form>
+
+  <form class="" action="/cancel" method="post">
+    <input type="submit"  value="Cancel">
+  </form>
+
+  </body>
+</html>

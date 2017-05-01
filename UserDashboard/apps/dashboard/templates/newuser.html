@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>New User</title>
+  </head>
+  <body>
+    <div class="header">
+      <h1>Test app</h1>
+      <a href="/logout">Log off</a>
+    </div>
+  <h1>Add a new user</h1>
+  <a href="/dashboard">Return to Dashboard</a>
+  <form class="" action="/addnewuser" method="post">
+    {% csrf_token %}
+    <label for="email"> Email </label>
+    <span style="padding-left:55px"></span>
+    <input type="email" id="email" name="email"> <br><br>
+    <label for="first_name"> First Name: </label>
+    <span style="padding-left:20px"> </span>
+    <input type="text" id="first_name" name="first_name" value=""> <br><br>
+    <label for="last_name"> Last Name: </label>
+    <span style="padding-left:20px"> </span>
+    <input type="text" id="last_name" name="last_name"> <br><br>
+    <label for="password"> Password </label>
+    <span style="padding-left:30px"></span>
+    <input type="password" id="password" name="password"> <br><br>
+    <label for="pass_confirm"> PW Confirm </label>
+    <span style="padding-left:10px"></span>
+    <input type="password" id="pass_confirm" name="confirm_password"> <br><br>
+    <input type="submit" name="submit" value="Create">
+  </form>
+  </body>
+</html>

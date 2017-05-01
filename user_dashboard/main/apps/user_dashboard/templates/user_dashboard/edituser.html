@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Edit User</title>
+  </head>
+  <body>
+
+{% if user.id == request.session.id %}
+    <h1>Edit User: {{user.first_name}}&nbsp;{{user.last_name}}</h1>
+    <h1>Edit Information</h1>
+    <form class="" action="/updateuserinfo/{{user.id}}" method="post">
+      Email Address: <input type="text" name="email" value="">
+      First Name: <input type="text" name="first_name" value="">
+      Last Name: <select class="" name="user_level">
+        <option value="admin">Admin</option>
+        <option value="normal">Normal</option>
+      </select>
+      Change Password: <input type="password" name="password" value="">
+      Password Confirmation: <input type="password" name="confirm_pw" value="">
+      Description: <textarea name="description" rows="8" cols="80"></textarea>
+    </form>
+
+
+
+
+
+{% if user.user_level == 'admin'%}
+    <h1>Edit User: {{user.first_name}}&nbsp;{{user.last_name}}</h1>
+    <h1>Edit Information</h1>
+    <form class="" action="/updateuserinfo/{{user.id}}" method="post">
+      Email Address: <input type="text" name="email" value="">
+      First Name: <input type="text" name="first_name" value="">
+      Last Name: <select class="" name="user_level">
+        <option value="admin">Admin</option>
+        <option value="normal">Normal</option>
+      </select>
+      Change Password: <input type="password" name="password" value="">
+      Password Confirmation: <input type="password" name="confirm_pw" value="">
+    </form>
+
+
+  </body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Add Products</title>
+  </head>
+  <body>
+    <h1>Add a Product!</h1>
+    <form class="" action="/product" method="post">
+      {% csrf_token %}
+      Name: <input type="text" name="name" value=""><br>
+      Description: <textarea name="description" rows="8" cols="80"></textarea><br>
+      Weight: <input type="text" name="weight" value=""><br>
+      Price: <input type="text" name="price" value=""><br>
+      Cost: <input type="text" name="cost" value=""><br>
+      Category: <input type="text" name="category" value=""><br>
+      <input type="submit" name="" value="Add Product"><br>
+    </form>
+    <h1>Your Products!</h1>
+    {% for i in products %}
+      <p>{{i.name}}</p>
+      <p>{{i.description}}</p>
+      <p>{{i.weight}}</p>
+      <p>{{i.price}}</p>
+      <p>{{i.cost}}</p>
+      <p>{{i.category}}</p>
+    {% endfor %}
+  </body>
+</html>

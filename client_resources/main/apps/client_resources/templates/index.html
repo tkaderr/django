@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Clients</title>
+    <style media="screen">
+      .table{
+        border: 2px solid red
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Clients</h1>
+    <div class="table">
+    <table>
+      <tr>
+        <th>Business Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+      </tr>
+      {% for i in clients %}
+      <tr>
+        <td><a href="/client/{{i.id}}">{{i.name}}</a></td>
+        <td>{{i.email}}</td>
+        <td>{{i.phone}}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    </div>
+    <form class="" action="/client/add" method="post">
+      {% csrf_token %}
+      <input type="submit" name="" value="Add a Client">
+    </form>
+  </body>
+</html>
